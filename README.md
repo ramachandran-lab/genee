@@ -33,9 +33,13 @@ R CMD INSTALL genee_0.0.0.9000.tar.gz
 # Example code:
 
 genee(summary data, ld)
+
 genee(summary data, ld, -1)
+
 genee(summary data, ld, upper=10000, lower=1000)
+
 genee(summary data, ld, 0.98, gene_list = my_list)
+
 genee(summary data, ld, alpha = 0, prior_weight = my_prior)
 
 # Note:
