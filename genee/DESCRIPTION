@@ -1,0 +1,22 @@
+Package: genee
+Title: An Association Test for Aggregated Sets of SNP-Level Summary
+        Statistics
+Version: 0.0.0.9000
+Authors@R: c(person("Wei", "Cheng", email = "wei_cheng1@brown.edu", role = c("aut", "cre")),
+    person("Sohini", "Ramachandran", email = "sramachandran@brown.edu", role = c("aut")),
+    person("Lorin", "Crawford", email = "lorin crawford@brown.edu", role = c("aut")))
+Description: Uses regularized regression to shrink SNP-level GWAS effect sizes and account for epsilon-genic effects in the null model during hypothesis testing.
+    for association testing of sets of SNPs. 
+Depends: R (>= 3.3.3), CompQuadForm (>= 1.4.3), glmnet (>= 2.0-16),
+        mclust (>= 5.4.1)
+Imports: CompQuadForm (>= 1.4.3), glmnet (>= 2.0-16), mclust (>= 5.4.1)
+License: MIT
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1.9000
+NeedsCompilation: no
+Packaged: 2019-03-29 04:02:49 UTC; weicheng
+Author: Wei Cheng [aut, cre],
+  Sohini Ramachandran [aut],
+  Lorin Crawford [aut]
+Maintainer: Wei Cheng <wei_cheng1@brown.edu>
