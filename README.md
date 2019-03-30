@@ -32,15 +32,15 @@ R CMD INSTALL genee_0.0.0.9000.tar.gz
 
 # Example code:
 
-genee(summary data, ld)
+myresults = genee(summary data, ld)
 
-genee(summary data, ld, -1)
+myresults = genee(summary data, ld, -1)
 
-genee(summary data, ld, upper=10000, lower=1000)
+myresults = genee(summary data, ld, upper=10000, lower=1000)
 
-genee(summary data, ld, 0.98, gene_list = my_list)
+myresults = genee(summary data, ld, 0.98, gene_list = my_list)
 
-genee(summary data, ld, alpha = 0, prior_weight = my_prior)
+myresults = genee(summary data, ld, alpha = 0, prior_weight = my_prior)
 
 # Note:
 1. As you may notice, genee doesn't require a gene_list file. It can derive genes containing the SNPs according to the boundary that users set up using hg19 gene list. Therefore, to use hg19 gene list, users will have to run genee wihthin genee directory to load the glist-hg19 file. Meanwhile, users can also provide the gene_list file by themselves for testing arbitrary sets of SNPs.
