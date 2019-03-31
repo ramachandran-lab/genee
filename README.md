@@ -51,6 +51,7 @@ The first two files contain the summary statistics and LD matrix from the simula
     load("pathtogenee-master/genee/Simulated_Data_Example/Simulated_LD.RData")
     
     ### Load in the Summary Statistics ###
+    
     load("pathtogenee-master/genee/Simulated_Data_Example/Simulated_Summary_Statistics.RData")
 
     ### Load in the Gene List ###
@@ -90,6 +91,7 @@ We provide a small real data example using gene-ε. For this tutorial, we first 
     load("pathtogenee-master/genee/Real_Data_Example/Real_LD.RData")
 
     ### Load in the Summary Statistics ###
+    
     load("pathtogenee-master/genee/Real_Data_Example/Real_Summary_Statistics.RData")
     
     ### Run the Analysis ###
