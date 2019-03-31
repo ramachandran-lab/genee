@@ -32,7 +32,7 @@ Alternatively, one can also install the package from the shell as a [source](htt
 
 * `gene_list`: A list where each element represents a vector containing the indices of all SNPs in one set (e.g., a set could refer to a gene). If a list is not provided by user, this will be derived using the hg19 gene list from the UCSC browser. In this case, you will have to run the method in the genee package directory in order to load hg19 gene list.
 
-## Tutorial using Simulated Data:
+## Tutorial using Simulated Data
 
 We provide a small simulated example to illustrate how to use gene-ε. Here, we created a simulated dataset using `Simulation.R` file. Under the `Simulated_Data_Example` directory, there are four files:
 
@@ -76,7 +76,7 @@ The first two files contain the summary statistics and LD matrix from the simula
 
 Note that this analysis uses only default choices for gene-ε. For more details, please see the `Simulation.R` file.
 
-## Tutorial using Real Data:
+## Tutorial using Real Data
 
 We provide a small real data example using gene-ε. For this tutorial, we first derive summary statistics for a small set of 2000 SNPs on chromosome 22 using UK Biobank (self-identified as British) individual-level genotype data and the `Body Height` trait. Next, we used the CEU (Western European Ancestry) and GBR (British in England and Scotland) population genotype data from the 1000 Genomes Project to derive a corresponding LD matrix. To run gene-ε on this dataset, use the following commands:
 
@@ -100,13 +100,17 @@ We provide a small real data example using gene-ε. For this tutorial, we first 
 
 Again, this analysis uses the default choices for gene-ε.
 
-## Additional Notes and Thoughts:
+## Additional Notes and Thoughts
 
 * As you may notice, gene-ε does not require a gene list file. It can derive region based p-values for  SNPs contained within boundaries that users set up themselves. Therefore, users can provide any list that allows them to test arbitrary sets of SNPs.
 
 * gene-ε requires an LD matrix as an input. Hence, if users have large genome-wide dataset (i.e. a million SNPs), it may be a struggle for R to handle such a large LD matrix. Thus, in these cases, we recommend considering to run the method on a local or *cis* basis (e.g., chromosome by chromosome).
 
-## Questions and Feedback: 
+## Relevant Citations
+
+W. Cheng, S. Ramachandran, and L. Crawford (2019). Epsilon-genic effects bridge the gap between polygenic and omnigenic complex traits. _bioRxiv_.
+
+## Questions and Feedback
 For questions or concerns with gene-ε, please contact [Wei Cheng](mailto:wei_cheng1@brown.edu).
 
 We appreciate any feedback you may have with our software and/or instructions.
