@@ -1,4 +1,4 @@
-# gene-ε
+# gene-ε R Package
 
 An Association Test for Aggregated Sets of SNP-Level Summary Statistics
 
