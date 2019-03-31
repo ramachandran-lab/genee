@@ -46,19 +46,32 @@ We provide a small simulated example to illustrate how to use gene-ε. Here, we 
 
 The first two files contain the summary statistics and LD matrix from the simulation. The third file stores all the information about the simulated data. The fourth file is a gene list file. In this case, the function requires that we use this file. To run gene-ε on this simulated dataset, use the following commands:
 
+    ### Load in the LD Matrix ###
+    
     load("pathtogenee-master/genee/Simulated_Data_Example/Simulated_LD.RData")
-
+    
+    ### Load in the Summary Statistics ###
     load("pathtogenee-master/genee/Simulated_Data_Example/Simulated_Summary_Statistics.RData")
+
+    ### Load in the Gene List ###
 
     load("pathtogenee-master/genee/Simulated_Data_Example/gene_list.RData")
 
+    ### Run the Analysis ###
+
     myresult = genee(mydata, ld, gene_list = gene_list)
 
-    load("pathtogenee-master/genee/Simulated_Data_Example/Simulated_Example.RData")#Load info about the simulation
+    ### Load in Info About the Simulation ###
+    
+    load("pathtogenee-master/genee/Simulated_Data_Example/Simulated_Example.RData")
 
-    plot(-log10(myresult[,2]), xlab = "gene", ylab = "-log10p", cex = 0.8, pch = 16) #Manhattan plot
+    ### Create a Manhattan Plot for the Genes ###
 
-    points(simu_result$assign_result$all_genes$causal_genes, -log10(myresult[,2])[simu_result$assign_result$all_genes$causal_genes], col = "red",  cex = 0.8, pch = 16) #Check real causal genes
+    plot(-log10(myresult[,2]), xlab = "gene", ylab = "-log10p", cex = 0.8, pch = 16)
+
+    ### Check for the Causal Genes ###
+
+    points(simu_result$assign_result$all_genes$causal_genes, -log10(myresult[,2])[simu_result$assign_result$all_genes$causal_genes], col = "red",  cex = 0.8, pch = 16)
 
 Note that this analysis uses only default choices for gene-ε. For more details, please see the `Simulation.R` file.
 
@@ -66,11 +79,20 @@ Note that this analysis uses only default choices for gene-ε. For more details,
 
 We provide a small real data example using gene-ε. For this tutorial, we first derive summary statistics for a small set of 2000 SNPs on chromosome 22 using UK Biobank (self-identified as British) individual-level genotype data and the `Body Height` trait. Next, we used the CEU (Western European Ancestry) and GBR (British in England and Scotland) population genotype data from the 1000 Genomes Project to derive a corresponding LD matrix. To run gene-ε on this dataset, use the following commands:
 
-    setwd("pathtogenee-master/genee/") #Make sure to run this within the genee directory to load the hg19 gene list file!
+    ### Set the Working Directory ###
+    
+    setwd("pathtogenee-master/genee/") 
+    
+    #NOTE: Make sure to run this within the genee directory to load the hg19 gene list file!
+
+    ### Load in the LD Matrix ###
 
     load("pathtogenee-master/genee/Real_Data_Example/Real_LD.RData")
 
+    ### Load in the Summary Statistics ###
     load("pathtogenee-master/genee/Real_Data_Example/Real_Summary_Statistics.RData")
+    
+    ### Run the Analysis ###
 
     myresult = genee(mydata, ld)
 
