@@ -249,9 +249,9 @@ mydata = example_input
 
 
 ### Save example
-save(simu_result, file = "example_simulate.RData")
-save(mydata, file = "example_summary_statistics_simulate.RData")
-save(ld, file = "ld.RData")
+save(simu_result, file = "Simulated_Example.RData")
+save(mydata, file = "Simulated_Summary_Statistics.RData")
+save(ld, file = "Simulated_LD.RData")
 #save gene list (deleting the intergenic region)
 gene_list[[ngene+1]] = NULL
 save(gene_list, file = "gene_list.RData")
