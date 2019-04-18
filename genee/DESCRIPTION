@@ -10,7 +10,7 @@ Description: Uses regularized regression to shrink SNP-level GWAS effect sizes a
 Depends: R (>= 3.3.3), CompQuadForm (>= 1.4.3), glmnet (>= 2.0-16),
         mclust (>= 5.4.1)
 Imports: CompQuadForm (>= 1.4.3), glmnet (>= 2.0-16), mclust (>= 5.4.1)
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1.9000
