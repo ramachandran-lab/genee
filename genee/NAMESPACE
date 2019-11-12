@@ -2,9 +2,13 @@
 
 export(genee)
 export(genee_EM)
+export(genee_bigdata)
 export(genee_list)
 export(genee_loop)
 export(genee_ols)
 export(genee_regularize)
+export(genee_regularize_bigdata)
 export(genee_regularize_regression)
+export(genee_regularize_regression_bigdata)
 export(genee_test)
+export(prepare_LD)

@@ -4,7 +4,7 @@
 \alias{genee_regularize_regression}
 \title{Regularized Regression.}
 \usage{
-genee_regularize_regression(betas, ld, alpha)
+genee_regularize_regression(betas, ld, alpha, nfolds)
 }
 \arguments{
 \item{betas}{A vector of GWAS effect size estimators (OLS betas).}
@@ -12,6 +12,8 @@ genee_regularize_regression(betas, ld, alpha)
 \item{ld}{A matrix of pairwise correlations statistics (i.e., r).}
 
 \item{alpha}{A tuning parameter determining the type of regularization. More specifically, alpha = 0: Ridge Regression; 0 < alpha < 1: Elastic Net; alpha = 1: LASSO.}
+
+\item{nfolds}{A number indicates how many folds to do for cross validation for regularize regression. The default is 10. If it's fed with 0, then it will perform no cross validation and choose lambda with smallest penalty.}
 }
 \value{
 A vector of regularized effect size estimators.

@@ -2,12 +2,15 @@
 #'
 #' @param mydata A matrix of four columns. The first column specifies the chromosome for each SNP. The second column specifies the name for each SNP. The third column specifies the physical position for each SNP. The fourth column specifies the GWAS effect size estimator for each SNP.
 #' @param ld A matrix of pairwise correlations statistics (i.e., r).
+#' @param ld_path Path to the ld matrix memory mapping file (.desc, .bin) including the prefix of the file name. Make sure that .desc and .bin are in the same directory.
 #' @param alpha A tuning parameter determining the type of regularized regression. Default is alpha = 0.5 which uses the Elastic Net solution. More specifically, alpha = 0: Ridge Regression; 0 < alpha < 1: Elastic Net; alpha = 1: LASSO. Set alpha = -1 to use the original summary statistics with no regularization or shrinkage.
 #' @param upper The number of base pairs downstream of the gene to be included. Default is 50000.
 #' @param lower The number of base pairs upstream of the gene to be included. Default is 50000.
 #' @param prior_weight A vector specifying the prior weight for each SNP. Default assumes equal weights by defining prior_weight to be a vector containing 1's.
 #' @param gene_list A list where each element represents a vector containing the indices of all SNPs in one set (e.g., a set could refer to a gene). If it's not provided by user, this will be derived using the hg19 gene list from UCSC browser.
 #' @param nfolds A number indicates how many folds to do for cross validation for regularize regression. The default is 10. If it's fed with 0, then it will perform no cross validation and choose lambda with smallest penalty.
+#' @param lambda.min The smallest lambda to use for regularize regression, as a fraction of the largest lambda. Default is 0.0001.
+#' @param nlambda The number of lambda values to use. Default is 100.
 #' @return If a gene list is not provided, genee will return a matrix containing the following 7 columns: 1. chromosome number (chr); 2. gene name; 3. start position; 4. end position; 5. number of SNPs in the gene/set (nsnp); 6. gene/set test statistics (test_q); and 7. gene/set p-value (pval). If a gene list is provided, genee will return a matrix with two columns: 1. gene/set test statistics (test_q); and 2. gene/set p-value (pval).
 #' @export
 #' @examples
@@ -16,6 +19,10 @@
 #' x3 = c(1, 1, 2)
 #' x = cbind(x1 ,x2, x3)
 #' ld = cor(x)
+#' write.table(ld, file = "myld", row.names = FALSE, col.names = FALSE, quote = FALSE, sep = " ")
+#' ld_name = "myld"
+#' prepare_LD(ld_name)
+#' ld_path = "myld"
 #' prior_weight = c(1, 1, 1)
 #' gene_list=list()
 #' gene_list[[1]]=c(1, 2)
@@ -29,8 +36,8 @@
 #' mydata[,2] = snpnames
 #' mydata[,3] = pos
 #' mydata[,4] = betas
-#' genee(mydata, ld, alpha =-1, gene_list = gene_list)
-genee <- function(mydata, ld, alpha, upper, lower, prior_weight, gene_list, nfolds){
+#' genee(mydata, ld, ld_path, alpha =0.5, gene_list = gene_list, 3, 0.001, 50)
+genee_bigdata <- function(mydata, ld_matrix, ld_path, alpha, upper, lower, prior_weight, gene_list, nfolds, lambda.min, nlambda){
 
   #get chromsomes
   all_chr=as.numeric(mydata[,1])
@@ -42,7 +49,7 @@ genee <- function(mydata, ld, alpha, upper, lower, prior_weight, gene_list, nfol
   betas_ols=as.numeric(mydata[,4])
 
   #make sure ld is a matrix
-  ld=as.matrix(ld)
+  ld_matrix=as.matrix(ld_matrix)
 
   #if missing alpha, set default to be 0.5
   if(missing(alpha)){
@@ -79,17 +86,27 @@ genee <- function(mydata, ld, alpha, upper, lower, prior_weight, gene_list, nfol
     gene_info = NA
   }
 
-  #if missing lower, set default to be 50000
+  #if missing nfolds, set default to be 10
   if(missing(nfolds)){
     nfolds = 10
+  }
+
+  #if missing lambda.min, set default to be 0.0001
+  if(missing(lambda.min)){
+    lambda.min = 0.0001
+  }
+
+  #if missing nlambda, set default to be 100
+  if(missing(nlambda)){
+    nlambda = 100
   }
 
   #if alpha == -1, use raw GWAS betas
   #else using regularized version
   if(alpha == -1){
-    tempresults = genee_ols(betas_ols = betas_ols, ld = ld, prior_weight = prior_weight, gene_list = gene_list)
+    tempresults = genee_ols(betas_ols = betas_ols, ld = ld_matrix, prior_weight = prior_weight, gene_list = gene_list)
   }else{
-    tempresults = genee_regularize(betas_ols = betas_ols, alpha = alpha, ld = ld, prior_weight = prior_weight, gene_list = gene_list, nfolds = nfolds)
+    tempresults = genee_regularize_bigdata(betas_ols = betas_ols, alpha = alpha, ld = ld_matrix,ld_path = ld_path, prior_weight = prior_weight, gene_list = gene_list, nfolds = nfolds, lambda.min = lambda.min, nlambda = nlambda)
   }
 
   #test statistics

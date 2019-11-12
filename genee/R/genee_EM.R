@@ -13,7 +13,7 @@ genee_EM<-function(betas){
   # fit a normal mixture model
   # only use non-zero effect sizes to prevent errors during fitting EM
   betas_nonzero = betas[which(betas!=0)]
-  
+
   #if only one element is provided
   if(length(betas_nonzero) <= 1){
     stop("You have no SNP or only 1 SNP has non-zero effect size estimators. Use other regularized method or check data!")
@@ -22,12 +22,14 @@ genee_EM<-function(betas){
   # fitting univariate normal mixture model
   EM_fit = inference_result_lasso_mclust<-Mclust(betas_nonzero, G = 1:9, modelNames = "V")
 
-  # if only one component returned, then output the variance of the only component as epsilon effect.
-  # Otherwise, output the second largest variance.
+  # If only one component returned, then output the variance of the only component as epsilon effect.
+  # If the first component composed more than 50% SNPs, regarding the first component as the null since more than half SNPs will have effects on the trait. Otherwise, output the second largest variance.
   if(length(EM_fit$parameters$variance$sigmasq)>1){
-
-    epsilon_effect = sort(EM_fit$parameters$variance$sigmasq, decreasing = TRUE)[2]
-
+    if(EM_fit$parameters$pro[which(EM_fit$parameters$variance$sigmasq == max(EM_fit$parameters$variance$sigmasq))]>=0.5){
+      epsilon_effect = sort(EM_fit$parameters$variance$sigmasq, decreasing = TRUE)[1]
+    }else{
+      epsilon_effect = sort(EM_fit$parameters$variance$sigmasq, decreasing = TRUE)[2]
+    }
   }else{
 
     epsilon_effect = sort(EM_fit$parameters$variance$sigmasq, decreasing = TRUE)[1]
