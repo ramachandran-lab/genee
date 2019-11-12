@@ -106,6 +106,8 @@ Again, this analysis uses the default choices for gene-ε.
 
 * gene-ε requires an LD matrix as an input. Hence, if users have large genome-wide dataset (i.e. a million SNPs), it may be a struggle for R to handle such a large LD matrix. Thus, in these cases, we recommend considering to run the method on a local or *cis* basis (e.g., chromosome by chromosome).
 
+* For dataset with large LD matrix (more than 40,000 by 40,000), unfortunately, glmnet doesn't support regularize regression function on large dataset. We write a new function using data mapped file which requires biglasso library. Users will have to use genee_bigdata function with prepare_ld function to run regularize regression with LD matrix in this case. 
+
 ## Relevant Citations
 
 W. Cheng, S. Ramachandran, and L. Crawford (2019). Epsilon-genic effects bridge the gap between polygenic and omnigenic complex traits. _bioRxiv_.
