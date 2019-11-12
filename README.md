@@ -4,13 +4,13 @@ An Association Test for Aggregated Sets of SNP-Level Summary Statistics
 
 ## Software Requirements
 
-R (>= 3.3.3), CompQuadForm (>= 1.4.3), glmnet (>= 2.0-16), mclust (>= 5.4.1)
+R (>= 3.3.3), CompQuadForm (>= 1.4.3), glmnet (>= 2.0-16), mclust (>= 5.4.1), biglasso(>= 1.3-7)
 
 ## Installation Instructions
 
 After the ZIP file has been downloaded, type the following command in the terminal:
 
-    R CMD INSTALL genee_0.0.0.9000.tar.gz
+    R CMD INSTALL genee_0.1.0.tar.gz
 
 Alternatively, one can also install the package from the shell as a [source](http://cran.r-project.org/doc/manuals/r-release/R-admin.html#Installing-packages).
 
