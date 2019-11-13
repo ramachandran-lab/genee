@@ -110,7 +110,7 @@ Again, this analysis uses the default choices for gene-ε.
 
 ## Relevant Citations
 
-W. Cheng, S. Ramachandran, and L. Crawford (2019). Epsilon-genic effects bridge the gap between polygenic and omnigenic complex traits. _bioRxiv_.
+W. Cheng, S. Ramachandran, and L. Crawford. Recalibrating the genome-wide null hypothesis enables the detection of associated genes underlying complex traits. _bioRxiv_. 597484.
 
 ## Questions and Feedback
 For questions or concerns with gene-ε, please contact [Wei Cheng](mailto:wei_cheng1@brown.edu).
