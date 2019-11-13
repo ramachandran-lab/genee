@@ -1,6 +1,6 @@
 # gene-ε R Package
 
-An Association Test for Aggregated Sets of SNP-Level Summary Statistics
+A Recalibrated Hypothesis Test for SNP-Level Summary Statistics
 
 ## Software Requirements
 
