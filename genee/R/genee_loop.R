@@ -5,7 +5,7 @@
 #' @param epsilon_effect The threshold for epsilon-genic effects (i.e., the second largest variance component).
 #' @param prior_weight A vector specifying the prior weight for each SNP.
 #' @param gene_list A list where each element represents a vector containing the indices of all SNPs in one set (e.g., a set could refer to a gene).
-#' @return A list where the first element is a vector of test statistics, and the second element is a vector of p values.
+#' @return A list where the first element is a vector of test statistics; the second element is a vector of variances and the third element is a vector of p-values.
 #' @export
 #' @examples
 #' x1 = c(0, 1, 1)
@@ -28,11 +28,14 @@ genee_loop <- function(betas, ld, epsilon_effect, prior_weight, gene_list){
   result = unlist(sapply(gene_list, genee_test, ld, betas, epsilon_effect, prior_weight))
 
   #derive test statistics
-  gene_effect_sizes = result[c(1:length(gene_list))*2-1]
+  gene_effect_sizes = result[c(1:length(gene_list))*3-2]
+
+  #derive test statistics variance
+  gene_var = result[c(1:length(gene_list))*3-1]
 
   #derive p-values
-  gene_p_values = result[c(1:length(gene_list))*2]
+  gene_p_values = result[c(1:length(gene_list))*3]
 
   #return results
-  return(list(gene_effect_sizes, gene_p_values))
+  return(list(gene_effect_sizes, gene_var, gene_p_values))
 }

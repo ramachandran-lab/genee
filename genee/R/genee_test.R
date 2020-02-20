@@ -5,7 +5,7 @@
 #' @param betas A vector of effect size estimators (OLS betas or regularized betas).
 #' @param epsilon_effect The threshold for epsilon-genic effects (i.e., the second largest varaince of all components).
 #' @param prior_weight A vector specifying the prior weight for each SNP.
-#' @return A vector containing test statistic and p-value for the set.
+#' @return A vector containing test statistic, variance and p-value for the set.
 #' @export
 #' @examples
 #' gene = c(1,2)
@@ -35,6 +35,9 @@ genee_test<-function(gene, ld, betas, epsilon_effect, prior_weight){
   #compute test statistics
   test_statsics = betas[gene]%*%weight_matrix%*%betas[gene]
 
+  #compute test statistics variance
+  t_var = sum(diag((ld_g*epsilon_effect)%*%(ld_g*epsilon_effect)))
+
   #Using imhof to derive p-values
   options(warn=1)
   ans=imhof(test_statsics, lambda = e_values,h = rep(1, length(e_values)), delta = rep(0,length(e_values)), epsabs = 10^(-16), epsrel = 10^(-16), limit = 1000)
@@ -46,5 +49,5 @@ genee_test<-function(gene, ld, betas, epsilon_effect, prior_weight){
   }
 
   #return test statistics and p-values
-  return(c(test_statsics, p_value_g))
+  return(c(test_statsics, t_var, p_value_g))
 }

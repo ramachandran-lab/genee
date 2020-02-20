@@ -6,7 +6,7 @@
 #' @param prior_weight A vector specifying the prior weight for each SNP.
 #' @param gene_list A list where each element represents a vector containing the indices of all the SNPs in one set (e.g. a set could refer to a gene).
 #' @param nfolds A number indicates how many folds to do for cross validation for regularize regression. The default is 10. If it's fed with 0, then it will perform no cross validation and choose lambda with smallest penalty.
-#' @return A list where the first element is a vector of test statistics and the second element is a vector of p values.
+#' @return A list where the first element is a vector of test statistics; the second element is a vector of variances and the third element is a vector of p-values.
 #' @export
 #' @examples
 #' x1 = c(0, 1, 0)

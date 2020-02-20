@@ -8,7 +8,7 @@
 #' @param prior_weight A vector specifying the prior weight for each SNP. Default assumes equal weights by defining prior_weight to be a vector containing 1's.
 #' @param gene_list A list where each element represents a vector containing the indices of all SNPs in one set (e.g., a set could refer to a gene). If it's not provided by user, this will be derived using the hg19 gene list from UCSC browser.
 #' @param nfolds A number indicates how many folds to do for cross validation for regularize regression. The default is 10. If it's fed with 0, then it will perform no cross validation and choose lambda with smallest penalty.
-#' @return If a gene list is not provided, genee will return a matrix containing the following 7 columns: 1. chromosome number (chr); 2. gene name; 3. start position; 4. end position; 5. number of SNPs in the gene/set (nsnp); 6. gene/set test statistics (test_q); and 7. gene/set p-value (pval). If a gene list is provided, genee will return a matrix with two columns: 1. gene/set test statistics (test_q); and 2. gene/set p-value (pval).
+#' @return If a gene list is not provided, genee will return a matrix containing the following 7 columns: 1. chromosome number (chr); 2. gene name; 3. start position; 4. end position; 5. number of SNPs in the gene/set (nsnp); 6. gene/set test statistics (test_q); 7.gene/set test statistics variance and 8. gene/set p-value (pval). If a gene list is provided, genee will return a matrix with three columns: 1. gene/set test statistics (test_q);  2.gene/set test statistics variance and 3. gene/set p-value (pval).
 #' @export
 #' @examples
 #' x1 = c(0, 1, 1)
@@ -79,7 +79,7 @@ genee <- function(mydata, ld, alpha, upper, lower, prior_weight, gene_list, nfol
     gene_info = NA
   }
 
-  #if missing lower, set default to be 50000
+  #if missing nfolds, set default to be 10
   if(missing(nfolds)){
     nfolds = 10
   }
@@ -96,14 +96,18 @@ genee <- function(mydata, ld, alpha, upper, lower, prior_weight, gene_list, nfol
   test_statistics = tempresults[[1]]
 
   #pvals for genes
-  pvals = tempresults[[2]]
+  tvar = tempresults[[2]]
+
+  #pvals for genes
+  pvals = tempresults[[3]]
 
   #check whether have gene_info
   if(all(is.na(gene_info))){
     #only output test statistics and pvals
     test_q = test_statistics
+    q_var = tvar
     pval = pvals
-    final_results = data.frame(test_q, pval)
+    final_results = data.frame(test_q, q_var, pval)
   }else{
     chr = as.numeric(gene_info[,1])
     gene = as.character(gene_info[,2])
@@ -111,8 +115,9 @@ genee <- function(mydata, ld, alpha, upper, lower, prior_weight, gene_list, nfol
     end = as.numeric(gene_info[,4])
     nsnp = as.numeric(gene_info[,5])
     test_q = test_statistics
+    q_var = tvar
     pval = pvals
-    final_results = data.frame(chr, gene, start, end, nsnp, test_q, pval)
+    final_results = data.frame(chr, gene, start, end, nsnp, test_q, q_var, pval)
   }
 
   #return results

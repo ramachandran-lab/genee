@@ -18,7 +18,7 @@ genee_loop(betas, ld, epsilon_effect, prior_weight, gene_list)
 \item{gene_list}{A list where each element represents a vector containing the indices of all SNPs in one set (e.g., a set could refer to a gene).}
 }
 \value{
-A list where the first element is a vector of test statistics, and the second element is a vector of p values.
+A list where the first element is a vector of test statistics; the second element is a vector of variances and the third element is a vector of p-values.
 }
 \description{
 Loop through all gene sets and derive test statistics and p-values for each set.

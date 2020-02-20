@@ -18,7 +18,7 @@ genee_test(gene, ld, betas, epsilon_effect, prior_weight)
 \item{prior_weight}{A vector specifying the prior weight for each SNP.}
 }
 \value{
-A vector containing test statistic and p-value for the set.
+A vector containing test statistic, variance and p-value for the set.
 }
 \description{
 Hypothesis Testing for One Set of SNPs

@@ -24,7 +24,7 @@ genee(mydata, ld, alpha, upper, lower, prior_weight, gene_list, nfolds)
 \item{nfolds}{A number indicates how many folds to do for cross validation for regularize regression. The default is 10. If it's fed with 0, then it will perform no cross validation and choose lambda with smallest penalty.}
 }
 \value{
-If a gene list is not provided, genee will return a matrix containing the following 7 columns: 1. chromosome number (chr); 2. gene name; 3. start position; 4. end position; 5. number of SNPs in the gene/set (nsnp); 6. gene/set test statistics (test_q); and 7. gene/set p-value (pval). If a gene list is provided, genee will return a matrix with two columns: 1. gene/set test statistics (test_q); and 2. gene/set p-value (pval).
+If a gene list is not provided, genee will return a matrix containing the following 7 columns: 1. chromosome number (chr); 2. gene name; 3. start position; 4. end position; 5. number of SNPs in the gene/set (nsnp); 6. gene/set test statistics (test_q); 7.gene/set test statistics variance and 8. gene/set p-value (pval). If a gene list is provided, genee will return a matrix with three columns: 1. gene/set test statistics (test_q);  2.gene/set test statistics variance and 3. gene/set p-value (pval).
 }
 \description{
 genee: An Association Test for Aggregated Sets of SNP-Level Summary Statistics.

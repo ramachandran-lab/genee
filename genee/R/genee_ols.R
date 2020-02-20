@@ -4,7 +4,7 @@
 #' @param ld A matrix of pairwise correlations statistics (i.e., r).
 #' @param prior_weight A vector specifying the prior weight for each SNP.
 #' @param gene_list A list where each element represents a vector containing the indices of all the SNPs in one set (e.g., a set could refer to a gene).
-#' @return A list where the first element is a vector of test statistics and the second element is a vector of p-values.
+#' @return A list where the first element is a vector of test statistics; the second element is a vector of variances and the third element is a vector of p-values.
 #' @export
 #' @examples
 #' x1 = c(0, 1, 1)
