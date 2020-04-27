@@ -23,7 +23,7 @@
 genee_regularize <- function(betas_ols, alpha, ld, prior_weight, gene_list, nfolds){
 
   #run regularized regression
-  beta_regularized = genee_regularize_regression(betas = betas_ols, ld = ld, alpha = alpha, nfolds)
+  beta_regularized = genee_regularize_regression(betas = betas_ols, ld = ld, alpha = alpha, nfolds = nfolds)
 
   #run EM to derive epsilon_effects
   epsilon_effect = genee_EM(betas = beta_regularized)
