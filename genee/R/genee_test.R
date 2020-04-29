@@ -30,7 +30,8 @@ genee_test<-function(gene, ld, betas, epsilon_effect, prior_weight){
 
   #derive eigenvalues
   temp_e <- eigen((ld_g*epsilon_effect)%*%weight_matrix)
-  e_values = temp_e$values
+  e_values = 1/temp_e$values
+  
 
   #compute test statistics
   test_statsics = betas[gene]%*%weight_matrix%*%betas[gene]
