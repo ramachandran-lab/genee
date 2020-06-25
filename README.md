@@ -110,7 +110,7 @@ Again, this analysis uses the default choices for gene-ε.
 
 ## Relevant Citations
 
-W. Cheng, S. Ramachandran, and L. Crawford. Recalibrating the genome-wide null hypothesis enables the detection of associated genes underlying complex traits. _bioRxiv_. 597484.
+W. Cheng, S. Ramachandran, and L. Crawford (2020). Estimation of non-null SNP effect size distributions enables the detection of enriched genes underlying complex traits. _PLOS Genetics_. **16**(6): e1008855.
 
 ## Questions and Feedback
 For questions or concerns with gene-ε, please contact [Wei Cheng](mailto:wei_cheng1@brown.edu).
